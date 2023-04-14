@@ -15,12 +15,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::get('/upload', function () {
+        return view('upload');
+})
+    ->middleware(['auth', 'verified'])
+    ->name('upload');
+
+Route::get('/cluster', function () {
+        return view('cluster');
+})
+->middleware(['auth', 'verified'])
+->name('cluster');
+
+Route::get('/inquiry', function () {
+    return view('inquiry');
+})
+->middleware(['auth', 'verified'])
+->name('inquiry');
+
+Route::get('/reports', function () {
+    return view('report');
+})
+->middleware(['auth', 'verified'])
+->name('reports');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
